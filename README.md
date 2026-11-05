@@ -1,8 +1,8 @@
-# VarScope
+# GenePath-Analyzer
 
-VarScope finds the differences between a DNA/cDNA sequence and a human RefSeq transcript and reports each one the way clinical genomics does: in **HGVS notation**, with its predicted effect on the protein.
+GenePath-Analyzer finds the differences between a DNA/cDNA sequence and a human RefSeq transcript and reports each one the way clinical genomics does: in **HGVS notation**, with its predicted effect on the protein.
 
-It is the successor to GenePath Analyzer. Compared with v1.4 it:
+It:
 
 - aligns against the **specific RefSeq transcript** (e.g. `NM_007194.4`) instead of the top BLAST hit in `nt`
 - uses **affine-gap alignment**, so a substitution is no longer misreported as a deletion plus an insertion
@@ -55,4 +55,4 @@ Each variant is annotated independently against the reference (as VEP does), so 
 
 ## Author
 
-Snehal Yadav, M.Sc. Bioinformatics, DES Pune University. Builds on GenePath Analyzer, developed under the mentorship of Dr. Kushagra Kashyap.
+Snehal Yadav, M.Sc. Bioinformatics, DES Pune University. developed under the mentorship of Dr. Kushagra Kashyap.
