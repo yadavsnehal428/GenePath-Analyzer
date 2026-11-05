@@ -1,5 +1,5 @@
-streamlit
-biopython
+streamlit>=1.30
+biopython>=1.81
 pandas
-matplotlib
 requests
+pytest
