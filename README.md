@@ -1,15 +1,15 @@
-# GenePath-Analyzer
+# GenePath Analyzer
 
-GenePath-Analyzer finds the differences between a DNA/cDNA sequence and a human RefSeq transcript and reports each one the way clinical genomics does: in **HGVS notation**, with its predicted effect on the protein.
+GenePath Analyzer finds the differences between a DNA/cDNA sequence and a human RefSeq transcript and reports each one the way clinical genomics does: in **HGVS notation**, with its predicted effect on the protein.
 
-It:
+Version 2.0 is a rebuild of GenePath Analyzer v1.4. Compared with v1.4 it:
 
 - aligns against the **specific RefSeq transcript** (e.g. `NM_007194.4`) instead of the top BLAST hit in `nt`
 - uses **affine-gap alignment**, so a substitution is no longer misreported as a deletion plus an insertion
 - reports positions in **transcript and coding (c.) coordinates** rather than alignment columns
 - **normalises indels** to the most 3′ position and recognises **duplications**, following HGVS rules
 - translates the coding region to give the **protein change (p.)** and a **Sequence Ontology consequence** (missense, stop gained, frameshift, in-frame deletion, start/stop lost, UTR …)
-- replaces the old count-based "harmfulness" score, which had no biological basis
+- replaces the old count-based "harmfulness" score with real predictions from **Ensembl VEP**: SIFT, PolyPhen-2, ClinVar significance and gnomAD frequency
 
 ## Example
 
@@ -36,14 +36,12 @@ python -m pytest -q
 2. **Alignment**: Biopython `PairwiseAligner`, global mode, match +2, mismatch −3, gap open −5, gap extend −2, free end gaps for the query (so partial sequences work).
 3. **Variant calling**: consecutive differing columns are grouped; indels are shifted 3′; insertions that repeat the preceding bases become duplications.
 4. **Annotation**: each variant is applied to the reference transcript, the coding region is translated, and the first changed amino acid determines the p. description and consequence.
-5. **Functional annotation** (optional): each HGVS description is sent to the [Ensembl VEP REST API](https://rest.ensembl.org) with RefSeq transcripts enabled. VarScope keeps the result for the chosen transcript: VEP impact, SIFT and PolyPhen-2 (missense only), allele-specific ClinVar significance, gnomAD exome/genome allele frequency and the dbSNP rsID.
+5. **Functional annotation** (optional): each HGVS description is sent to the [Ensembl VEP REST API](https://rest.ensembl.org) with RefSeq transcripts enabled. GenePath Analyzer keeps the result for the chosen transcript: VEP impact, SIFT and PolyPhen-2 (missense only), allele-specific ClinVar significance, gnomAD exome/genome allele frequency and the dbSNP rsID.
 
-## Roadmap
+## Version history
 
-- [x] v0.1 Variant calling, HGVS c./p., consequences
-- [x] v0.2 Ensembl VEP annotation (SIFT, PolyPhen), ClinVar significance, gnomAD frequency
-- [ ] v0.3 AlphaFold structure view with the variant highlighted; InterPro domains
-- [ ] v0.4 Validation on known ClinVar variants
+- **v2.0** Transcript-specific alignment, HGVS c./p., 3′ normalisation, Sequence Ontology consequences, Ensembl VEP annotation, offline tests, validation against Mutalyzer
+- **v1.4** BLAST-based mutation listing with KEGG pathway lookup
 
 ## Validation
 
@@ -55,4 +53,4 @@ Each variant is annotated independently against the reference (as VEP does), so 
 
 ## Author
 
-Snehal Yadav, M.Sc. Bioinformatics, DES Pune University. developed under the mentorship of Dr. Kushagra Kashyap.
+Snehal Yadav, M.Sc. Bioinformatics, DES Pune University. Originally developed under the mentorship of Dr. Kushagra Kashyap.

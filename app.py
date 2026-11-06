@@ -1,12 +1,12 @@
 import pandas as pd
 import streamlit as st
 
-from varscope import __version__
-from varscope.pipeline import annotate, clean_dna
-from varscope.reference import accession_from_header, fetch_transcript, find_transcript_by_blast
-from varscope.vep import annotate_rows
+from genepath import __version__
+from genepath.pipeline import annotate, clean_dna
+from genepath.reference import accession_from_header, fetch_transcript, find_transcript_by_blast
+from genepath.vep import annotate_rows
 
-st.set_page_config(page_title="VarScope", page_icon="🧬", layout="wide")
+st.set_page_config(page_title="GenePath Analyzer", page_icon="🧬", layout="wide")
 
 
 @st.cache_data(show_spinner=False, ttl=24 * 3600)
@@ -20,7 +20,7 @@ def get_vep(rows: tuple, accession: str):
 
 
 # ---------------- Sidebar ----------------
-st.sidebar.title("🧬 VarScope")
+st.sidebar.title("🧬 GenePath Analyzer")
 st.sidebar.markdown(
     "Finds the variants in a human transcript sequence and describes them in "
     "**HGVS notation** with their effect on the protein."
@@ -32,12 +32,13 @@ st.sidebar.markdown("""
 3. Click **Analyse**
 """)
 st.sidebar.markdown("---")
-st.sidebar.caption(f"Version {__version__} · successor to GenePath Analyzer")
+st.sidebar.caption(f"Version {__version__}")
+st.sidebar.caption("Mentored by Dr. Kushagra Kashyap")
 st.sidebar.caption("Developed by Snehal Yadav")
 st.sidebar.caption("For research and education only, not for clinical use.")
 
 # ---------------- Input ----------------
-st.title("🧬 VarScope")
+st.title("🧬 GenePath Analyzer")
 st.caption("Variant detection and HGVS annotation against RefSeq transcripts")
 
 col1, col2 = st.columns(2)
@@ -120,7 +121,7 @@ if st.button("🚀 Analyse", type="primary"):
                 "was not seen in gnomAD, which is typical for rare or novel variants."
             )
         st.download_button("💾 Download CSV", df.to_csv(index=False),
-                           file_name=f"VarScope_{tx.gene}_{tx.accession}.csv")
+                           file_name=f"GenePath_{tx.gene}_{tx.accession}.csv")
     with tab2:
         st.subheader("Consequences")
         st.bar_chart(df["Consequence"].value_counts())
