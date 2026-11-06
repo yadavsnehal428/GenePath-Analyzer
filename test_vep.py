@@ -1,7 +1,7 @@
-"""Parsing tests for genepath.vep using a hand-made record shaped like a VEP
+"""Parsing tests for vep using a hand-made record shaped like a VEP
 REST response (field names as in the Ensembl documentation). The values are
 synthetic test data, not real annotations."""
-from genepath.vep import summarise
+from vep import summarise
 
 RECORD = {
     "input": "NM_000000.1:c.100C>T",
@@ -52,7 +52,7 @@ def test_missing_record():
 
 def test_retries_on_503(monkeypatch):
     """A busy server (503) is retried instead of failing straight away."""
-    import genepath.vep as vep
+    import vep
 
     class Resp:
         def __init__(self, code, body):

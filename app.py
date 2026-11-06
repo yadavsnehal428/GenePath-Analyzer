@@ -1,10 +1,11 @@
 import pandas as pd
 import streamlit as st
 
-from genepath import __version__
-from genepath.pipeline import annotate, clean_dna
-from genepath.reference import accession_from_header, fetch_transcript, find_transcript_by_blast
-from genepath.vep import annotate_rows
+from pipeline import annotate, clean_dna
+from reference import accession_from_header, fetch_transcript, find_transcript_by_blast
+from vep import annotate_rows
+
+__version__ = "2.0.0"
 
 st.set_page_config(page_title="GenePath Analyzer", page_icon="🧬", layout="wide")
 

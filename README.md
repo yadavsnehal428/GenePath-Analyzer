@@ -13,7 +13,7 @@ Version 2.0 is a rebuild of GenePath Analyzer v1.4. Compared with v1.4 it:
 
 ## Example
 
-`examples/CHEK2_query.fasta` is a CHEK2 cDNA sequence whose header names its transcript (`NM_007194.4`). Load it in the app to see the variant table.
+`CHEK2_query.fasta` is a CHEK2 cDNA sequence whose header names its transcript (`NM_007194.4`). Load it in the app to see the variant table.
 
 ## Run locally
 

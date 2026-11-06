@@ -1,8 +1,8 @@
 """Glue: reference + query -> annotated variant table."""
-from .align import align
-from .hgvs import c_hgvs, protein_effect
-from .reference import Transcript
-from .variants import call_variants
+from align import align
+from hgvs import c_hgvs, protein_effect
+from reference import Transcript
+from variants import call_variants
 
 
 def clean_dna(text: str) -> str:
@@ -33,5 +33,5 @@ def annotate(tx: Transcript, query: str) -> list[dict]:
 
 
 def reference_protein(tx: Transcript) -> str:
-    from .hgvs import translate_until_stop
+    from hgvs import translate_until_stop
     return translate_until_stop(tx.sequence[tx.cds_start - 1:tx.cds_end])[0]

@@ -1,5 +1,5 @@
 """HGVS c. (coding DNA) and p. (protein) descriptions and variant consequences."""
-from .variants import Variant, apply_variant
+from variants import Variant, apply_variant
 
 CODON = {}
 _bases = "TCAG"

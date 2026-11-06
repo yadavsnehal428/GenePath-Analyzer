@@ -4,7 +4,7 @@ GenePath Analyzer v2's HGVS descriptions are checked against **Mutalyzer 3** (ht
 
 ## Round 1: CHEK2 test sequence (6 Nov 2026)
 
-Input: `examples/CHEK2_query.fasta`, aligned to RefSeq transcript `NM_007194.4` (CHEK2; coding region 59–1690, 543 amino acids, protein `NP_009125.1`).
+Input: `CHEK2_query.fasta`, aligned to RefSeq transcript `NM_007194.4` (CHEK2; coding region 59–1690, 543 amino acids, protein `NP_009125.1`).
 
 | # | GenePath Analyzer c. | GenePath Analyzer p. | Mutalyzer c. (normalised) | Mutalyzer p. | Consequence | Match |
 |---|---|---|---|---|---|---|
@@ -16,7 +16,7 @@ Input: `examples/CHEK2_query.fasta`, aligned to RefSeq transcript `NM_007194.4` 
 
 ## Round 1b: known pathogenic variant, VEP annotation (6 Nov 2026)
 
-Input: `examples/CHEK2_1100delC.fasta`, a CHEK2 fragment carrying the CHEK2 1100delC founder variant associated with breast cancer risk.
+Input: `CHEK2_1100delC.fasta`, a CHEK2 fragment carrying the CHEK2 1100delC founder variant associated with breast cancer risk.
 
 | Check | Expected | GenePath Analyzer | Match |
 |---|---|---|---|
@@ -30,7 +30,7 @@ This confirms the Ensembl VEP integration retrieves the correct transcript, rsID
 
 ## Offline unit tests
 
-`tests/` checks the core logic on a synthetic transcript: missense, synonymous, stop gained, frameshift (with 3′ shifting), in-frame deletion, duplication, 5′ and 3′ UTR, start lost, stop lost, partial query sequences, and invalid input. VEP response parsing (transcript choice, SIFT/PolyPhen formatting, allele-specific ClinVar, gnomAD, retry on a busy server) is tested with a mock response. Run with `python -m pytest -q`.
+`test_core.py` and `test_vep.py` check the core logic on a synthetic transcript: missense, synonymous, stop gained, frameshift (with 3′ shifting), in-frame deletion, duplication, 5′ and 3′ UTR, start lost, stop lost, partial query sequences, and invalid input. VEP response parsing (transcript choice, SIFT/PolyPhen formatting, allele-specific ClinVar, gnomAD, retry on a busy server) is tested with a mock response. Run with `python -m pytest -q`.
 
 ## Planned
 

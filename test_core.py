@@ -8,11 +8,11 @@ Transcript layout (1-based):
 """
 import pytest
 
-from genepath.align import _align_python
-from genepath.hgvs import c_hgvs, protein_effect
-from genepath.reference import Transcript, accession_from_header
-from genepath.variants import call_variants
-from genepath import pipeline
+from align import _align_python
+from hgvs import c_hgvs, protein_effect
+from reference import Transcript, accession_from_header
+from variants import call_variants
+import pipeline
 
 UTR5, CDS, UTR3 = "GGCAC", "ATGAAACGTTTAGAAAAGCTGGGACCCTGA", "CCATTTGGG"
 REF = UTR5 + CDS + UTR3
